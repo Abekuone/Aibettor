@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Inscription</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-container">
+
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Nom d'utilisateur</ion-label>
+          <ion-input formControlName="displayName" type="text" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Prénom</ion-label>
+          <ion-input formControlName="firstName" type="text" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Nom</ion-label>
+          <ion-input formControlName="lastName" type="text" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Adresse e-mail</ion-label>
+          <ion-input formControlName="email" type="email" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Mot de passe</ion-label>
+          <ion-input formControlName="password" type="password" required></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-button expand="full" color="success" type="submit" [disabled]="!registerForm.valid">S'inscrire</ion-button>
+    </form>
+
+    <div class="main-content">
+      <p> <a href="/login">Déjà un compte ?</a> </p>
+    </div>
+
+  </div>
+</ion-content>
+

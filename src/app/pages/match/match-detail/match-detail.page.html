@@ -1,0 +1,113 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>match-detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true" *ngIf="match">
+  <ion-card *ngIf="match">
+    <ion-card-header>
+      <ion-card-title>Match Details</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Euipe A</ion-label>
+        <ion-label>{{ match.homeTeam.name }}</ion-label>
+        <ion-avatar slot="end">
+          <img [src]="match.homeTeam.crest" alt="Home Team Logo" class="team-logo">
+        </ion-avatar>
+      </ion-item>
+      <ion-item>
+        <ion-label>Equipe B</ion-label>
+        <ion-label>{{ match.awayTeam.name }}</ion-label>
+        <ion-avatar slot="end">
+          <img [src]="match.awayTeam.crest" alt="Away Team Logo" class="team-logo">
+        </ion-avatar>
+      </ion-item>
+      <ion-item>
+        <ion-label> Gagnant : {{ match.score.winner }}</ion-label>
+        <ion-label>Final : {{ match.score.fullTime.homeTeam }} - {{ match.score.fullTime.awayTeam }}</ion-label>
+        <ion-label>Mi-tems : {{ match.score.halfTime.homeTeam }} - {{ match.score.halfTime.awayTeam }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Date</ion-label>
+        <ion-label>{{ match.utcDate | date: 'dd MMM HH:mm' }}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Competition</ion-label>
+        <ion-label>{{ match.competition.name }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Matchday</ion-label>
+        <ion-label>{{ match.matchday }}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-row class="bet-options">
+          <ion-col size="4">
+            <ion-badge color="success" (click)="openCustomDialog(match.odds.homeWin, match.homeTeam.shortName, match.awayTeam.shortName, 'Victoire à domicile', match.homeTeam.crest, match.awayTeam.crest)">
+              {{ match.odds.homeWin }}
+            </ion-badge>
+          </ion-col>
+          <ion-col size="4">
+            <ion-badge color="warning" (click)="openCustomDialog(match.odds.draw, match.homeTeam.shortName, match.awayTeam.shortName, 'Match nul', match.homeTeam.crest, match.awayTeam.crest)">
+              {{ match.odds.draw }}
+            </ion-badge>
+          </ion-col>
+          <ion-col size="4">
+            <ion-badge color="danger" (click)="openCustomDialog(match.odds.awayWin, match.homeTeam.shortName, match.awayTeam.shortName, 'Victoire à l\'extérieur', match.homeTeam.crest, match.awayTeam.crest)">
+              {{ match.odds.awayWin }}
+            </ion-badge>
+          </ion-col>
+        </ion-row>      
+      </ion-item>
+      <ion-item>
+        <ion-label>Statut</ion-label>
+        <ion-label>{{ match.status }}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<div *ngIf="message" class="wrapper1">
+  <ion-button routerLink="/match-list" color="ion-activatable ripple-parent custom-parent success" >{{ message }}</ion-button>
+</div>
+
+<ion-modal id="custom-modal" #customModal>
+  <ng-template>
+    <div class="wrapper">
+      <ion-item class="team-item">
+        <ion-thumbnail>
+          <img [src]="homeTeamCrest" alt="Logo équipe domicile">
+        </ion-thumbnail>
+        {{ homeTeamName }}
+      </ion-item>
+      <ion-item class="team-item">
+        <ion-thumbnail>
+          <img [src]="awayTeamCrest" alt="Logo équipe extérieure">
+        </ion-thumbnail>
+        {{ awayTeamName }}
+      </ion-item>
+
+      <p>
+        <ion-text color="secondary">
+          <p>{{ betType }}</p>
+        </ion-text>
+
+        <ion-text color="success">
+          <p>Cote : {{ betOdds }}</p>
+        </ion-text>
+      </p>
+
+      <ion-item class="wrapper">
+        <ion-label>Montant (FCFA) :</ion-label>
+        <ion-input type="number" [(ngModel)]="betAmount" min="100" [step]="100"></ion-input>
+      </ion-item>
+      <ion-button expand="full" (click)="placeBet()" color="success">Parier</ion-button>
+      <ion-button expand="full" (click)="closeCustomDialog()" color="danger">Annuler</ion-button>
+    </div>
+  </ng-template>
+</ion-modal>

@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ligue des Champions</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/profil"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let match of matches" class="match-item" (click)="showMatchDetails(match)">
+      <div class="team-info">
+        <div class="team-logo">
+          <img [src]="match.homeTeam.crest" alt="Home Team Logo" class="logo">
+        </div>
+        <div class="team-name">
+          {{ match.homeTeam.name }}
+        </div>
+      </div>
+      <div class="match-info">
+        <div class="date">
+          {{ match.utcDate | date: 'dd MMM HH:mm' }}
+        </div>
+        <div class="score">
+          <span>  <ion-badge color="primary">{{ match.odds.homeWin }}</ion-badge></span> VS <span><ion-badge color="danger">{{ match.odds.awayWin }}</ion-badge></span>
+        </div>
+      </div>
+      <div class="team-info">
+        <div class="team-logo">
+          <img [src]="match.awayTeam.crest" alt="Away Team Logo" class="logo">
+        </div>
+        <div class="team-name">
+          {{ match.awayTeam.name }}
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

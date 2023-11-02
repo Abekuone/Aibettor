@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Profil
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="deconnexion()" color="danger">
+        Déconnexion
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="userProfile">
+    <ion-card-header>
+      <ion-card-title>Profil de {{ userProfile.displayName }}</ion-card-title>
+      <ion-buttons>
+        <ion-button color="warning modifier" routerLink="/edit-profile">
+          Modifier
+        </ion-button>
+      </ion-buttons>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Prénom</ion-label>
+        <ion-input [value]="userProfile.firstName" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Nom</ion-label>
+        <ion-input [value]="userProfile.lastName" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Adresse e-mail</ion-label>
+        <ion-input [value]="userProfile.email" readonly></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="!userProfile">
+    <ion-card-content>
+      <p>Connectez-vous pour afficher votre profil.</p>
+    </ion-card-content>
+  </ion-card>
+
+  <div class="wrapper">
+    <ion-button routerLink="/match-list" color="ion-activatable ripple-parent custom-parent success" >Voir les matchs à venir</ion-button>
+  </div>
+  
+  
+</ion-content>
+
+

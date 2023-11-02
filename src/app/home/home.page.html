@@ -1,20 +1,27 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      AI Bettor
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="home-background">
+  <div class="header">
+    <img src="assets/ballon.jpg" alt="Sports Betting Icon" class="icon">
+  </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="header">
+    <h1 color="light">Bienvenue sur Ai Bettor</h1>
+    <h3>L'IA qui parie pour vous !</h3>
+    <p>Gagner à coup sûr !</p>    
+  </div>
+
+  <div class="main-content">
+    <ion-button expand="full" class="inscription-button " color="success" routerLink="/register">Inscription</ion-button>
+  </div>
+
+  <div class="main-content">
+    <ion-button expand="full" class="connexion-button" routerLink="/login" color="danger">Connexion</ion-button>
   </div>
 </ion-content>

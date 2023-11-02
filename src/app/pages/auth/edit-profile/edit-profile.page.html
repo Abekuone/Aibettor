@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Modifier le profil</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">Nom d'utilisateur</ion-label>
+          <ion-input formControlName="displayName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Prénom</ion-label>
+          <ion-input formControlName="firstName"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Nom</ion-label>
+          <ion-input formControlName="lastName"></ion-input>
+        </ion-item>
+
+        <ion-button type="submit" color="secondary center-horizontally">Mettre à jour</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
