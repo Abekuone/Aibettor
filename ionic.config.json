@@ -1,0 +1,7 @@
+{
+  "name": "Aibettor",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
